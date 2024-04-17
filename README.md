@@ -15,4 +15,12 @@ Both sound effects were sourced from pixabay for free. Here are the sound effect
  - Shower: https://pixabay.com/sound-effects/shower-35087/
  - Humming: https://pixabay.com/sound-effects/girlprettyvoicehumming-35489/
 
+Linear Interpolation: Josh Muzi
+
+I used linear interpolation in order to calculate the player's position from the light position to brighten the flicker intensity when the player approached the light and decrease it when the player moved away. 
+
+Particle Effect and Trigger: Josh Muzi
+
+I added a trigger particle effect to the JohnLemon game object which triggers a basic particle effect whenever the space key is pressed.
+
 
