@@ -19,6 +19,11 @@ public class LightFlicker : MonoBehaviour
     public float lightIntensityMin = 1.25f;
     public float lightIntensityMax = 2.25f;
     public float flickerDuration = 0.075f;
+
+    float maxDistance = 10f;
+    float minFlickerDuration = 0.01f;
+    float maxFlickerDuration = 0.1f;
+
     public AnimationCurve intensityCurve;
 
     Material m_FlickeringMaterial;
@@ -47,18 +52,37 @@ public class LightFlicker : MonoBehaviour
         {
             if (m_Timer >= flickerDuration)
             {
-                ChangeRandomFlickerLightIntensity ();
+                ChangeRandomFlickerLightIntensity();
             }
         }
-        else if(flickerMode == FlickerMode.AnimationCurve)
+        else if (flickerMode == FlickerMode.AnimationCurve)
         {
-            ChangeAnimatedFlickerLightIntensity ();
+            ChangeAnimatedFlickerLightIntensity();
         }
-            
-        flickeringLight.intensity = m_FlickerLightIntensity;
-        m_FlickeringMaterial.SetColor (k_EmissionColorID, m_EmissionColor * m_FlickerLightIntensity * k_LightIntensityToEmission);
-    }
 
+        flickeringLight.intensity = m_FlickerLightIntensity;
+        m_FlickeringMaterial.SetColor(k_EmissionColorID, m_EmissionColor * m_FlickerLightIntensity * k_LightIntensityToEmission);
+
+        //calculate the distance between the player and the light
+        float distance = Vector3.Distance(transform.position, flickeringLight.transform.position);
+
+
+        //calculate the interpolated flicker duration based on the distance
+        float interpolatedFlickerDuration = Mathf.Lerp(maxFlickerDuration, minFlickerDuration, distance / maxDistance);
+
+        // Check if the timer is greater than the interpolated flicker duration
+        if (m_Timer >= interpolatedFlickerDuration)
+        {
+            if (flickerMode == FlickerMode.Random)
+            {
+                ChangeRandomFlickerLightIntensity();
+            }
+            else if (flickerMode == FlickerMode.AnimationCurve)
+            {
+                ChangeAnimatedFlickerLightIntensity();
+            }
+        }
+    }
     void ChangeRandomFlickerLightIntensity ()
     {
         m_FlickerLightIntensity = Random.Range(lightIntensityMin, lightIntensityMax);
@@ -135,4 +159,5 @@ public class LightFlickerEditor : Editor
     public float flickerDuration = 0.075f;
     public AnimationCurve intensityCurve;*/
 }
+
 #endif
