@@ -12,7 +12,7 @@ the ghost in the shower will begin to hum a tune. This was done by making an aud
 that triggers the humming audio when entered for the first time.
 
 Both sound effects were sourced from pixabay for free. Here are the sound effects:
-  Shower: https://pixabay.com/sound-effects/shower-35087/
-  Humming: https://pixabay.com/sound-effects/girlprettyvoicehumming-35489/
+Shower: https://pixabay.com/sound-effects/shower-35087/
+Humming: https://pixabay.com/sound-effects/girlprettyvoicehumming-35489/
 
 
